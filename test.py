@@ -1,15 +1,13 @@
 import unittest
-from couch import Couch
-
+from rabbit import Rabbit
 
 class TestSuite(unittest.TestCase):
 
     def test(self):
-        couch = Couch()
-        couch.populate()
-        things = couch.count()
-        self.failIf(things != 5)
-
+        rabbit = Rabbit()
+        rabbit.sendMessage()
+        things = rabbit.readMessage()
+        self.failIf(things != "Hello World!")
 
 def main():
     unittest.main()
