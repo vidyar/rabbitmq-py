@@ -1,0 +1,21 @@
+language: python
+
+python:
+  - 2.7
+
+# Mongo binds to 127.0.0.1 by default
+services:
+  - couchdb
+
+install:
+  - pip install -r requirements.txt
+
+# Make folders for the reports
+before_script:
+  - mkdir -p shippable/testresults
+  - mkdir -p shippable/codecoverage
+
+script:
+  - nosetests test.py --with-xunit --xunit-file=shippable/testresults/nosetests.xml
+  - which python && coverage run --branch test.py
+  - which python && coverage xml -o shippable/codecoverage/coverage.xml test.py
