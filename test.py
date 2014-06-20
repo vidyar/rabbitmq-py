@@ -6,11 +6,12 @@ class TestSuite(unittest.TestCase):
     def test(self):
         rabbit = Rabbit()
         rabbit.sendMessage()
-        things = rabbit.readMessage()
+        things = rabbit.relayMessage()
         self.failIf(things != "Hello World!")
 
+
 def main():
-    unittest.main()
+	unittest.main()
 
 if __name__ == "__main__":
     main()
